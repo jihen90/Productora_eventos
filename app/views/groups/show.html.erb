@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Member:</strong>
+  <%= @group.member %>
+</p>
+
+<p>
+  <strong>Debut date:</strong>
+  <%= @group.debut_date %>
+</p>
+
+<p>
+  <strong>Gender:</strong>
+  <%= @group.gender %>
+</p>
+
+<p>
+  <strong>concert:</strong>
+  <% mes = Time.now.month %>
+  <% x= 0 %>
+  <% @group.concerts.each do |concert|%>
+      <%if concert.date_concert.month == mes %>
+        <% x+= 1%>
+      <%end%>
+  <%end%>
+  <%= x %>
+</p>
+
+<p>
+
+
+<strong>Last event:</strong>
+  <% last_date = (0-0-0) %>
+  <% @group.concerts.each do |concert| %>
+    <% if concert.date_concert > last_date %>
+      <% last_date = concert.date_concert %>
+    <% end %>
+  <% end %>
+  <%= last_date.strftime("%Y %B %A") %>
+</p>
+
+
+<%= link_to 'Edit', edit_group_path(@group) %> |
+<%= link_to 'Back', groups_path %>
