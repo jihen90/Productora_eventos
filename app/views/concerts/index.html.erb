@@ -2,7 +2,7 @@
 
 <h1>Concerts</h1>
 
-<table>
+<table class="table text-center">
   <thead>
     <tr>
       <th>Date concert</th>
@@ -18,7 +18,7 @@
       <tr>
         <td><%= concert.date_concert %></td>
         <td><%= concert.participant %></td>
-        <td><%= concert.duration %></td>
+        <td><%= "#{concert.duration} hrs" %></td>
         <td><%= concert.group %></td>
         <td><%= link_to 'Show', concert %></td>
         <td><%= link_to 'Edit', edit_concert_path(concert) %></td>
@@ -31,3 +31,6 @@
 <br>
 
 <%= link_to 'New Concert', new_concert_path %>
+<br>
+<br>
+<%= link_to 'Back to Groups', groups_path %>

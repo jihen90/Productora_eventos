@@ -8,8 +8,4 @@ class Group < ApplicationRecord
     def concert_count
         self.concerts.count
     end
-    def concert_participant
-        self.concerts
-    end
-
 end

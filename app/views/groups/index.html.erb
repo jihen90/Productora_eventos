@@ -2,16 +2,17 @@
 
 <h1>Groups</h1>
 
-<table>
+<table class="table text-center">
   <thead>
     <tr>
+      <th>Name</th>
       <th>Member</th>
       <th>Debut date</th>
       <th>Gender</th>
-      <th>Conciertos</th>
-      <th>Cantidad de personas</th>
-      <th>Fecha Concierto</th>
-      <th>id</th>
+      <th>Concerts</th>
+      <th>Participants</th>
+      <th>Date Concert</th>
+      <th>ID Concert</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -19,25 +20,26 @@
   <tbody>
     <% @groups.each do |group| %>
       <tr>
+        <td><%= group.name %></td>
         <td><%= group.member %></td>
         <td><%= group.debut_date %></td>
         <td><%= group.gender %></td>
         <td><%= group.concert_count%></td>
         <td>
-          <ul><% group.concerts.each do |concert|%>  
+          <ul style="list-style-type:none"><% group.concerts.each do |concert|%>  
               <li><%=concert.participant %> </li>
               <%end%>
           </ul> 
         </td>
         <td>
-          <ul><% group.concerts.each do |concert|%>  
+          <ul style="list-style-type:none"><% group.concerts.each do |concert|%>  
               <li><%=concert.date_concert %> </li>
               <%end%>
           </ul>
         </td>
     
         <td>
-          <ul><% group.concerts.each do |concert|%>  
+          <ul style="list-style-type:none"><% group.concerts.each do |concert|%>  
               <li><%=concert.id %> </li>
               <%end%>
           </ul>
@@ -54,3 +56,6 @@
 <br>
 
 <%= link_to 'New Group', new_group_path %>
+<br>
+<br>
+<%= link_to 'Create a concert', concerts_path %>

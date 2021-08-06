@@ -1,45 +1,58 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Member:</strong>
-  <%= @group.member %>
-</p>
+<table class="table text-center">
+  <thead>
+    <tr>
+      <th>Current Month Concert</th>
+      <th>Last Concert</th>
+      <th>Max participants per concert</th>
+      <th>Longest concert</th>
+    </tr>  
+  </thead>
 
-<p>
-  <strong>Debut date:</strong>
-  <%= @group.debut_date %>
-</p>
-
-<p>
-  <strong>Gender:</strong>
-  <%= @group.gender %>
-</p>
-
-<p>
-  <strong>concert:</strong>
-  <% mes = Time.now.month %>
-  <% x= 0 %>
-  <% @group.concerts.each do |concert|%>
-      <%if concert.date_concert.month == mes %>
-        <% x+= 1%>
-      <%end%>
-  <%end%>
-  <%= x %>
-</p>
-
-<p>
-
-
-<strong>Last event:</strong>
-  <% last_date = (0-0-0) %>
-  <% @group.concerts.each do |concert| %>
-    <% if concert.date_concert > last_date %>
-      <% last_date = concert.date_concert %>
-    <% end %>
-  <% end %>
-  <%= last_date.strftime("%Y %B %A") %>
-</p>
-
+  <tbody>
+    <tr>
+      <td>
+          <% mes = Time.now.month %>
+          <% x= 0 %>
+          <% @group.concerts.each do |concert|%>
+              <%if concert.date_concert.month == mes %>
+                <% x+= 1%>
+              <%end%>
+          <%end%>
+          <%= x %>
+      </td>
+      <td>
+        <% last_date = Date.new(0000-00-00) %>
+        <% @group.concerts.each do |concert| %>
+          <% if concert.date_concert > last_date %>
+            <% last_date = concert.date_concert %>
+          <% end %>
+        <% end %>
+        <%= last_date.strftime("%Y %B %A") %>
+      </td>
+      <td>
+        <% max_participants = 0 %>
+        <% @group.concerts.each do |concert| %>
+          <% if concert.participant > max_participants %>
+            <% max_participants = concert.participant %>
+          <% end %>
+        <% end %>
+        <%= max_participants %>
+      </td>
+      <td>
+        <% longest_concert = 0 %>
+        <% @group.concerts.each do |concert| %>
+          <% if concert.duration > longest_concert %>
+            <% longest_concert = concert.duration %>
+          <% end %>
+        <% end %>
+        <%= "#{longest_concert} hrs"%>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 <%= link_to 'Edit', edit_group_path(@group) %> |
 <%= link_to 'Back', groups_path %>
+
